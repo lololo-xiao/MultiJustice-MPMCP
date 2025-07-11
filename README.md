@@ -15,4 +15,4 @@ This repository contains the dataset and code for the paper accepted at NLPCC 20
 Full dataset and code will be uploaded shortly after the camera-ready submission.
 
 ## Contact
-For questions, please contact: xiaowang@lst.uni-saarland.de
+For questions, please contact: wangxiao02131@gamil.com
