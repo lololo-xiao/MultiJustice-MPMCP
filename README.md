@@ -1,43 +1,44 @@
 # MultiJustice: A Chinese Dataset for Multi-Party, Multi-Charge Legal Prediction
 
 [![Paper](https://img.shields.io/badge/Paper-NLPCC%202025-blue)](https://arxiv.org/abs/2507.06909)
-[![Dataset](https://img.shields.io/badge/Dataset-HuggingFace-yellow)](https://huggingface.co/loss4Wang)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
-## 📖 Overview
+## Overview
 
-**MultiJustice** is a comprehensive Chinese legal dataset designed for multi-party, multi-charge legal judgment prediction (LJP). This dataset addresses the critical research question: *Should multiple defendants and charges be treated separately in LJP?*
+**MultiJustice** introduces the MPMCP (Multi-Person Multi-Charge Prediction) dataset — **20,000 Chinese criminal cases** across four legal judgment scenarios that systematically vary in complexity:
 
-Our dataset contains **20,000 Chinese legal cases** across four practical legal judgment scenarios, enabling researchers to evaluate the complexity of real-world legal prediction tasks.
+| Scenario | Defendants | Charges | Cases |
+|----------|-----------|---------|-------|
+| **S1** | Single | Single | 5,000 |
+| **S2** | Single | Multiple | 5,000 |
+| **S3** | Multiple | Single | 5,000 |
+| **S4** | Multiple | Multiple | 5,000 |
 
-## 🎯 Key Features
+We benchmark five models (MT5, BERT, RoBERTa, Lawformer, InternLM2) on two tasks: **charge prediction** and **penalty term prediction**.
 
-- **20,000** Chinese legal cases with case facts, charges, and penalty terms
-- **4 Legal Scenarios** covering different complexity levels
-- **2 Prediction Tasks**: Charge prediction and penalty term prediction
-- **Comprehensive Evaluation** across multiple legal LLMs
-- **Standardized Splits** for reproducible research
+**Key finding**: S4 poses the greatest challenge. InternLM2 drops ~4.5% F1 from S1 to S4, while Lawformer drops ~19.7%.
 
-## 🏗️ Legal Scenarios
+## Results
 
-### Scenario 1 (S1): Single Defendant, Single Charge
-The simplest case involving one defendant and one charge.
+### Charge Prediction (F1-Score %)
 
-### Scenario 2 (S2): Single Defendant, Multiple Charges  
-Cases where one defendant faces multiple charges simultaneously.
+| Scenario | MT5 | BERT | RoBERTa | Lawformer | InternLM2 |
+|----------|-----|------|---------|-----------|-----------|
+| S1 | 76.4 | 78.6 | 81.0 | 81.4 | **85.3** |
+| S2 | 72.0 | 66.3 | 70.5 | 72.4 | **91.8** |
+| S3 | 70.9 | 77.8 | 75.2 | 78.0 | **81.0** |
+| S4 | 64.3 | 60.1 | 62.1 | 61.7 | **80.8** |
 
-### Scenario 3 (S3): Multiple Defendants, Single Charge
-Cases involving multiple defendants charged with the same offense.
+### Penalty Term Prediction (LogD % — lower is better)
 
-### Scenario 4 (S4): Multiple Defendants, Multiple Charges
-The most complex scenario with multiple defendants facing various charges.
+| Scenario | MT5 | BERT | RoBERTa | Lawformer | InternLM2 |
+|----------|-----|------|---------|-----------|-----------|
+| S1 | 60.7 | 45.8 | 43.3 | **39.5** | 59.3 |
+| S2 | 62.0 | 51.5 | 49.3 | **46.4** | 54.1 |
+| S3 | 79.8 | 53.6 | 51.7 | **48.7** | 61.3 |
+| S4 | 68.3 | **56.8** | 57.1 | 58.5 | 56.5 |
 
-
-**Key Finding**: Scenario S4 (multiple defendants, multiple charges) poses the greatest challenges, with performance degradation varying significantly across models.
-
-
-
-## 🔧 Data Format
+## Data Format
 
 The dataset is provided in CSV format with the following columns:
 
@@ -57,21 +58,22 @@ The dataset is provided in CSV format with the following columns:
 | `imprisonment` | Imprisonment duration (months) |
 | `fact_len` | Length of fact text |
 
+## Citation
 
+```bibtex
+@inproceedings{wang2025multijustice,
+  title={MultiJustice: A Chinese Dataset for Multi-Party, Multi-Charge Legal Prediction},
+  author={Wang, Xiao and Pei, Jiahuan and Shui, Diancheng and Han, Zhiguang and Sun, Xin and Zhu, Dawei and Shen, Xiaoyu},
+  booktitle={Proceedings of NLPCC 2025},
+  year={2025}
+}
+```
 
-
-
-## 📧 Contact
+## Contact
 
 For questions about the dataset or code, please contact:
 - Email: wangxiao02131@gmail.com
 
-## 📜 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🔄 Updates
-
-- **2025-07**: Initial release with 20,000 cases
-
-
